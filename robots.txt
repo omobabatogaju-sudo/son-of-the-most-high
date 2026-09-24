@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://omobabatogaju-sudo.github.io/son-of-the-most-high/sitemap.xml
