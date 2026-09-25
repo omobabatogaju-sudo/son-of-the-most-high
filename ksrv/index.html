@@ -70,7 +70,11 @@ document.getElementById('pform').addEventListener('submit',function(e){
   emailLink.href=gmailUrl;
   emailLink.style.display='inline-block';
   emailLink.textContent='Also Send These Details to Gmail';
-  window.location.href=whatsappUrl;
+  const waWindow=window.open(whatsappUrl,'_blank','noopener');
+  if(!waWindow){ window.location.href=whatsappUrl; } else {
+    emailLink.scrollIntoView({behavior:'smooth',block:'center'});
+    emailLink.focus();
+  }
 });
 </script>
 </body></html>
