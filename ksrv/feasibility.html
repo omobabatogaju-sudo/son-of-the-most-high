@@ -1,52 +1,142 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KSRV Feasibility — Land, Cost & Sustainability</title>
-<meta name="description" content="KSRV preliminary land, construction and operating feasibility framework for the 100-student pilot.">
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KSRV Feasibility Framework — Kwara Student Resident Village</title>
+<meta name="description" content="KSRV Phase 1 feasibility framework covering land, project programme, cost scenarios, affordability, operating model, infrastructure, risk, financing and decision gates.">
 <style>
 :root{--ink:#08100d;--deep:#0b1713;--paper:#f3efe5;--cream:#fbf8f0;--gold:#d9ad3f;--green:#1b5b43;--muted:#6f746f;--line:#d8d3c8}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Arial,Helvetica,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1120px,92%);margin:auto}.nav{padding:18px 0;border-bottom:1px solid #0001;background:#f3efe5}.navin{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;letter-spacing:.15em}.nav a:last-child{font-weight:800;color:var(--green)}.hero{background:var(--deep);color:#fff;padding:78px 0}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.17em;font-size:11px;font-weight:900}.hero h1{font-size:clamp(46px,7vw,88px);line-height:.92;letter-spacing:-.06em;max-width:850px;margin:18px 0}.hero p{max-width:760px;color:#d5dcd7;font-size:18px}.section{padding:82px 0}.head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:34px}.head h2{font-size:clamp(34px,5vw,60px);line-height:1;letter-spacing:-.05em;margin:8px 0}.head p{max-width:530px;color:var(--muted)}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:24px;background:var(--deep);color:#fff;border-radius:18px}.metric b{display:block;color:var(--gold);font-size:36px}.metric span{font-size:12px;color:#d0d8d3}.table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line)}.table th,.table td{padding:12px;border:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}.table th{background:var(--deep);color:#fff}.callout{background:var(--green);color:#fff;border-radius:22px;padding:28px}.callout strong{color:#f0d27a}.calculator{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}.inputs{background:#fff;padding:25px;border:1px solid var(--line);border-radius:18px}.inputs label{display:block;font-weight:800;font-size:12px;margin:12px 0 5px}.inputs input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px}.result{background:var(--deep);color:#fff;padding:28px;border-radius:18px}.result h3{margin-top:0}.result strong{font-size:33px;color:var(--gold);display:block;margin:12px 0}.source{font-size:12px;color:var(--muted)}.source a{text-decoration:underline;color:var(--green)}.footer{background:var(--ink);color:#fff;padding:40px 0;font-size:13px;color:#abb4af}@media(max-width:850px){.grid4{grid-template-columns:1fr 1fr}.head,.calculator{display:block}.result{margin-top:15px}}@media(max-width:520px){.grid4{grid-template-columns:1fr}}
-</style></head>
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.58 Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
+.nav{padding:17px 0;border-bottom:1px solid #0001;background:rgba(243,239,229,.96);position:sticky;top:0;z-index:20}.navin{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;letter-spacing:.15em}.nav a:last-child{font-weight:800;color:var(--green)}
+.hero{background:var(--deep);color:#fff;padding:82px 0}.eyebrow{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.hero h1{font-size:clamp(47px,7vw,88px);line-height:.92;letter-spacing:-.06em;max-width:900px;margin:18px 0}.hero p{max-width:780px;color:#d4ddd8;font-size:18px}.heroBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-block;padding:13px 19px;border-radius:999px;font-size:13px;font-weight:800;background:#fff;color:var(--ink)}.btn.gold{background:var(--gold)}.btn.green{background:var(--green);color:#fff}
+.section{padding:84px 0}.cream{background:var(--cream)}.dark{background:var(--deep);color:#fff}.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:35px}.head h2{font-size:clamp(34px,5vw,60px);line-height:.98;letter-spacing:-.055em;margin:8px 0}.head p{max-width:560px;color:var(--muted)}.dark .head p{color:#c2cbc6}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:24px;border-radius:18px;background:var(--deep);color:#fff}.metric b{display:block;color:var(--gold);font-size:36px}.metric span{font-size:12px;color:#d0d8d3}.table{width:100%;border-collapse:collapse;background:#fff}.table th,.table td{padding:12px;border:1px solid var(--line);font-size:13px;text-align:left;vertical-align:top}.table th{background:var(--deep);color:#fff}.callout{padding:28px;border-radius:20px;background:var(--green);color:#fff}.callout strong{color:#f0d27a}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.scenario{padding:24px;border:1px solid var(--line);border-radius:18px;background:#fff}.scenario h3{margin:0 0 8px}.scenario .rate{font-size:28px;font-weight:900;color:var(--green)}.scenario p{font-size:13px;color:var(--muted)}
+.gates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.gate{padding:22px;background:#fff;border-top:3px solid var(--gold);border-radius:0 0 18px 18px}.gate b{color:var(--green)}.gate h3{margin:18px 0 6px}.gate p{font-size:13px;color:var(--muted)}
+.footer{background:var(--ink);color:#fff;padding:45px 0}.footer p{color:#aab4ae;font-size:13px}.source{font-size:12px;color:var(--muted)}.source a{text-decoration:underline;color:var(--green)}
+@media(max-width:900px){.grid4,.gates{grid-template-columns:1fr 1fr}.scenarios{grid-template-columns:1fr}.head{display:block}}
+@media(max-width:560px){.grid4,.gates{grid-template-columns:1fr}.section{padding:70px 0}}
+</style>
+</head>
 <body>
 <nav class="nav"><div class="wrap navin"><a class="brand" href="./index.html">KSRV</a><a href="./index.html">← Back to KSRV</a></div></nav>
-<header class="hero"><div class="wrap"><div class="eyebrow">KSRV Feasibility Framework</div><h1>LAND. CAPITAL. COST. OPERATIONS.</h1><p>This page turns the 100-student KSRV concept into a preliminary planning envelope. It is deliberately transparent about what is known, what is a market benchmark, and what still requires professional verification.</p></div></header>
 
-<section class="section"><div class="wrap"><div class="head"><div><div class="eyebrow">Working Site Target</div><h2>3–5 acres is the current planning target.</h2></div><p>KSRV needs room not only for buildings, but also roads, parking, sports, the central green, drainage, utilities, shuttle movement, setbacks and future flexibility. The final land requirement depends on the approved site plan.</p></div><div class="grid4"><div class="metric"><b>3–5</b><span>Acres — preliminary site target</span></div><div class="metric"><b>4,020</b><span>m² — preliminary built-area allowance</span></div><div class="metric"><b>100</b><span>Students — Phase 1</span></div><div class="metric"><b>48</b><span>Accommodation units</span></div></div></div></section>
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">KSRV Feasibility Framework</div>
+<h1>TURNING THE IDEA INTO A REAL PROJECT.</h1>
+<p>This is the KSRV project-development framework for testing whether the 100-student pilot can move from concept to a viable site, cost plan, operating model and partnership structure.</p>
+<p><strong>Prepared for partnership and feasibility conversations — September 2026.</strong></p>
+<div class="heroBtns"><a class="btn gold" href="./index.html">KSRV Project Home</a><a class="btn" href="./project-brief.html">Read Project Brief</a></div>
+</div></header>
 
-<section class="section" style="background:var(--cream)"><div class="wrap"><div class="head"><div><div class="eyebrow">Land Market Snapshot</div><h2>Use market evidence, then verify the actual site.</h2></div><p>A current Ilorin market guide reports an active land range of roughly ₦3,000–₦20,000 per m² and an average closer to ₦12,000 per m², with an indicative acre price around ₦46.5 million. These are market references, not an offer or valuation.</p></div>
-<table class="table"><tr><th>Reference</th><th>Indicative figure</th><th>KSRV planning use</th></tr>
-<tr><td>Ilorin land guide, 2026</td><td>~₦12,000/m² average; ~₦46.5m/acre</td><td>Use only as a starting market benchmark.</td></tr>
-<tr><td>3 acres</td><td>~₦139.5m at the cited average</td><td>Lower-end site target scenario.</td></tr>
-<tr><td>5 acres</td><td>~₦232.5m at the cited average</td><td>More generous village/sports/parking scenario.</td></tr>
-</table><p class="source">Source: <a href="https://geniushomez.com/guides/cost-of-land/ilorin" target="_blank">Genius Homes — Cost of Land in Ilorin (2026)</a>. Final acquisition requires title search, survey, valuation, planning review and legal due diligence. Kwara State's official property-registration guidance identifies KW-GIS and required land documents for Right of Occupancy/Certificate of Occupancy processes.</p></div></section>
-
-<section class="section"><div class="wrap"><div class="head"><div><div class="eyebrow">Built Area</div><h2>About 4,000 m² is a useful first planning envelope.</h2></div><p>This is not a final quantity-surveyor measurement. It is a program-level estimate derived from the room strategy and core shared facilities.</p></div>
-<table class="table"><tr><th>Component</th><th>Planning allowance</th></tr>
-<tr><td>Residential Blocks A–D</td><td>~2,220 m² gross</td></tr>
-<tr><td>Learning Centre</td><td>~600 m²</td></tr>
-<tr><td>Village Centre</td><td>~450 m²</td></tr>
-<tr><td>Administration / Community</td><td>~350 m²</td></tr>
-<tr><td>Utilities / security / service structures</td><td>~220 m²</td></tr>
-<tr><td>Covered transport / other supporting space</td><td>~180 m²</td></tr>
-<tr><th>Total planning allowance</th><th>~4,020 m²</th></tr></table>
+<section class="section"><div class="wrap">
+<div class="head"><div><div class="eyebrow">01 / What We Are Testing</div><h2>More than a 100-bed hostel.</h2></div>
+<p>KSRV must prove that a student village can combine accommodation, learning, services, recreation, transport and enterprise while remaining financially sustainable and operationally manageable.</p></div>
+<div class="grid4"><div class="metric"><b>100</b><span>Phase 1 students</span></div><div class="metric"><b>4</b><span>Residential blocks</span></div><div class="metric"><b>48</b><span>Accommodation units</span></div><div class="metric"><b>3–5</b><span>Initial land target (acres)</span></div></div>
 </div></section>
 
-<section class="section dark" style="background:var(--deep);color:#fff"><div class="wrap"><div class="head"><div><div class="eyebrow">Pre-Feasibility Cost Envelope</div><h2 style="color:#fff">Plan with a range, not a fake exact number.</h2></div><p style="color:#cbd3ce">A 2026 published Nigerian residential construction guide reports ₦120,000–₦230,000/m² for standard residential construction. KSRV is more infrastructure-intensive than a standard house, so the planning model uses a higher blended allowance of ₦200,000–₦300,000/m². That higher KSRV allowance is an internal planning assumption and must be replaced by a project-specific BoQ.</p></div>
-<div class="calculator"><div class="inputs"><label>Built area (m²)</label><input id="area" type="number" value="4020" min="100"><label>Low blended rate (₦/m²)</label><input id="low" type="number" value="200000"><label>High blended rate (₦/m²)</label><input id="high" type="number" value="300000"><label>Allowance for external works, professional fees and contingency</label><input id="allow" type="number" value="25" min="0" max="60"><p class="source">This calculator is a planning tool, not a contractor quotation.</p></div>
-<div class="result"><h3>Illustrative construction envelope</h3><strong id="lo">₦804m</strong><div>Base construction at the low planning rate</div><strong id="hi">₦1.206bn</strong><div>Base construction at the high planning rate</div><hr style="border:0;border-top:1px solid #fff2;margin:20px 0"><strong id="all">₦1.005bn–₦1.508bn</strong><div>After the selected allowance</div></div></div>
-<p class="source" style="color:#c3cbc6;margin-top:15px">Market source: <a style="color:#f0d27a" href="https://nigeriabuildingcost.ng/blog/building-cost-per-square-metre-nigeria" target="_blank">Nigeria Building Cost — 2026 guide</a>. The guide itself notes that cost varies by location, soil, finishes and current material prices.</p></div></section>
+<section class="section cream"><div class="wrap">
+<div class="head"><div><div class="eyebrow">02 / Project Programme</div><h2>What Phase 1 actually includes.</h2></div><p>The 100-student pilot is intentionally manageable so KSRV can be built, operated, measured and improved before expansion.</p></div>
+<table class="table"><tr><th>Component</th><th>Phase 1 programme</th></tr>
+<tr><td>Residential</td><td>Blocks A–D; 100 students; 48 accommodation units.</td></tr>
+<tr><td>Learning</td><td>Library, quiet study, group study, CBT/computer centre and training rooms.</td></tr>
+<tr><td>Village Centre</td><td>Food, mini-mart, laundry, printing, grooming, technology and enterprise spaces.</td></tr>
+<tr><td>Community</td><td>Administration, student council, meetings, events and support spaces.</td></tr>
+<tr><td>Recreation</td><td>Football, basketball/volleyball, exercise, games, walking and green space.</td></tr>
+<tr><td>Transport</td><td>Dedicated KSRV shuttle pickup/drop-off and scheduled campus routes.</td></tr>
+<tr><td>Infrastructure</td><td>Water, power, internet, security, drainage, waste, service access and maintenance.</td></tr>
+<tr><td>Digital</td><td>Payments, maintenance reporting, announcements, activities and shuttle information.</td></tr></table>
+</div></section>
 
-<section class="section" style="background:var(--cream)"><div class="wrap"><div class="head"><div><div class="eyebrow">Accommodation Economics</div><h2>Current local rates give us a benchmark — not a final KSRV price.</h2></div><p>In July 2026, the University of Ilorin said approved accommodation fees for privately owned hostels on campus were ₦204,000 for four-person rooms and ₦255,000 for two-person rooms, plus a ₦36,400 utility charge for essential services. KSRV should set final fees only after its cost, demand and service-level study.</p></div>
-<table class="table"><tr><th>Reference</th><th>Current 2026 figure</th><th>KSRV interpretation</th></tr><tr><td>UNILORIN 4-person</td><td>₦204,000 / session</td><td>Affordable shared-room benchmark.</td></tr><tr><td>UNILORIN 2-person</td><td>₦255,000 / session</td><td>Two-person benchmark.</td></tr><tr><td>UNILORIN utility charge</td><td>₦36,400 / session</td><td>Evidence that utilities may be separated transparently from room fees.</td></tr><tr><td>KSRV private room</td><td>To be determined</td><td>Requires a private-room market survey and full cost model.</td></tr></table>
-<p class="source">Official source: <a href="https://www.unilorin.edu.ng/unilorin-restates-commitment-to-excellent-students-welfare/" target="_blank">University of Ilorin, July 2026</a>. These figures are a benchmark for context, not a KSRV price proposal.</p></div></section>
+<section class="section"><div class="wrap">
+<div class="head"><div><div class="eyebrow">03 / Residential Capacity</div><h2>Four blocks. Different ways to live.</h2></div><p>Shared does not mean cramped. The room strategy starts with dignity, personal space and consistent quality.</p></div>
+<table class="table"><tr><th>Block</th><th>Type</th><th>Units</th><th>Students</th><th>Working concept</th></tr>
+<tr><td>A</td><td>4-person</td><td>8</td><td>32</td><td>Spacious shared units; 4 beds, 4 wardrobes, 4 desks, shared study/lounge and generous bathroom target.</td></tr>
+<tr><td>B</td><td>2-person</td><td>12</td><td>24</td><td>Two-person units with distinct personal zones, shared living/study and private bathroom target.</td></tr>
+<tr><td>C</td><td>Private</td><td>16</td><td>16</td><td>Individual accommodation focused on privacy, study, storage and comfort.</td></tr>
+<tr><td>D</td><td>Mixed</td><td>12</td><td>28</td><td>4 four-person + 4 two-person + 4 private units.</td></tr>
+<tr><th colspan="2">TOTAL</th><th>48</th><th>100</th><th></th></tr></table>
+<p class="source">Final room dimensions, structure, accessibility, fire safety, drainage, plumbing and electrical requirements must be set by the professional design team after site studies.</p>
+</div></section>
 
-<section class="section"><div class="wrap"><div class="callout"><div class="eyebrow">What the numbers tell the project team</div><p><strong>The 100-student pilot should not be financed like a simple 100-bed hostel.</strong> The concept includes learning space, village services, recreation, transport and infrastructure. The project therefore needs a blended capital strategy and phased construction rather than assuming room fees alone will fund everything.</p><p>Potential routes include land contribution or long lease, patient equity, long-tenor development finance, strategic corporate support, institutional partnerships and carefully structured student-service revenues.</p></div></div></section>
+<section class="section dark"><div class="wrap">
+<div class="head"><div><div class="eyebrow">04 / Site + Land</div><h2>The land must support a village, not just buildings.</h2></div><p>Our current planning target is about 3–5 acres. The final requirement must come from the approved master plan and site-specific planning conditions.</p></div>
+<table class="table"><tr><th style="background:#0b1713;color:white">Site test</th><th style="background:#0b1713;color:white">What KSRV must confirm</th></tr>
+<tr><td>Location</td><td>Access to the intended campus cluster and urban services.</td></tr>
+<tr><td>Title</td><td>Clean, verifiable ownership and transferable/financeable interest.</td></tr>
+<tr><td>Planning</td><td>Compatible land use and a credible approval route.</td></tr>
+<tr><td>Access</td><td>All-weather road access, safe entrance and service access.</td></tr>
+<tr><td>Utilities</td><td>Practical route for electricity, water, telecoms and drainage.</td></tr>
+<tr><td>Flood / drainage</td><td>Flood risk, natural drainage and stormwater requirements.</td></tr>
+<tr><td>Soil / geology</td><td>Geotechnical investigation before structural cost is fixed.</td></tr>
+<tr><td>Expansion</td><td>Potential for future phases where demand and financing support them.</td></tr></table>
+<p style="color:#c3cbc6;font-size:12px;margin-top:14px">Kwara State’s official property-registration guidance identifies KW-GIS and requires relevant land/transfer documents in the registration process.</p>
+<p class="source" style="color:#c3cbc6">Reference: <a style="color:#f0d27a" href="https://kwarastate.gov.ng/property-registration-guide/" target="_blank">Kwara State Government — Property Registration Guide</a>.</p>
+</div></section>
 
-<section class="section" style="background:var(--cream)"><div class="wrap"><div class="head"><div><div class="eyebrow">What We Need Next</div><h2>Turn this planning model into a bankable feasibility study.</h2></div><p>The next stage is not guessing more numbers. It is replacing assumptions with professional evidence.</p></div>
-<table class="table"><tr><th>Workstream</th><th>Deliverable</th></tr><tr><td>Site search</td><td>3–5 candidate sites with title, access, utilities, flood/drainage, planning and proximity assessment.</td></tr><tr><td>Architectural feasibility</td><td>Concept master plan, building footprints, room areas, circulation, parking, sports and green-space plan.</td></tr><tr><td>Quantity surveying</td><td>Elemental cost plan and later detailed BoQ.</td></tr><tr><td>Financial model</td><td>Capex, operating costs, fee bands, occupancy scenarios, cash flow and financing structure.</td></tr><tr><td>Institutional study</td><td>Campus clusters, student demand, shuttle routes and partnership opportunities.</td></tr><tr><td>Legal / approvals</td><td>Land due diligence, planning path, permits, operating structure and contracts.</td></tr></table></div></section>
+<section class="section cream"><div class="wrap">
+<div class="head"><div><div class="eyebrow">05 / Built Area</div><h2>About 4,020 m² is our current programme allowance.</h2></div><p>This is a planning envelope, not a final QS measurement.</p></div>
+<table class="table"><tr><th>Component</th><th>Working allowance</th></tr>
+<tr><td>Residential Blocks A–D</td><td>~2,220 m² gross</td></tr><tr><td>Learning Centre</td><td>~600 m²</td></tr><tr><td>Village Centre</td><td>~450 m²</td></tr><tr><td>Administration / Community</td><td>~350 m²</td></tr><tr><td>Utility / security / service structures</td><td>~220 m²</td></tr><tr><td>Covered transport / other support</td><td>~180 m²</td></tr><tr><th>Total planning envelope</th><th>~4,020 m²</th></tr></table>
+</div></section>
 
-<footer class="footer"><div class="wrap"><b>KSRV — Kwara Student Resident Village</b><p>WhatsApp: 0907 485 6424 • Calls: 0906 702 2881 • Email: omobabatogaju@gmail.com</p><p>Pre-feasibility only. Final decisions require qualified professional studies.</p></div></footer>
-<script>
-function money(n){if(n>=1e9)return '₦'+(n/1e9).toFixed(3)+'bn'; if(n>=1e6)return '₦'+(n/1e6).toFixed(1)+'m'; return '₦'+Math.round(n).toLocaleString();}
-function calc(){const a=+area.value,l=+low.value,h=+high.value,p=+allow.value/100;const lo0=a*l,hi0=a*h;lo.textContent=money(lo0);hi.textContent=money(hi0);all.textContent=money(lo0*(1+p))+'–'+money(hi0*(1+p));}
-[area,low,high,allow].forEach(x=>x.addEventListener('input',calc));calc();
-</script></body></html>
+<section class="section dark"><div class="wrap">
+<div class="head"><div><div class="eyebrow">06 / Construction Cost Scenarios</div><h2>Use scenarios, not a fake exact budget.</h2></div><p>Published 2026 Nigerian construction estimates vary significantly. KSRV should not lock its investor case to a generic internet number.</p></div>
+<div class="scenarios">
+<div class="scenario"><h3>Lower planning case</h3><div class="rate">₦250k/m²</div><p>Illustrative base build on 4,020 m²: <strong>₦1.005bn</strong>.</p></div>
+<div class="scenario"><h3>Middle planning case</h3><div class="rate">₦350k/m²</div><p>Illustrative base build on 4,020 m²: <strong>₦1.407bn</strong>.</p></div>
+<div class="scenario"><h3>Upper planning case</h3><div class="rate">₦450k/m²</div><p>Illustrative base build on 4,020 m²: <strong>₦1.809bn</strong>.</p></div>
+</div>
+<div class="callout" style="margin-top:14px"><strong>Important:</strong> these are planning scenarios only. A 20% allowance for professional fees, statutory/development costs, external works and contingency would move the illustrative ranges to about ₦1.206bn, ₦1.689bn and ₦2.171bn respectively. Land and financing costs are excluded. A project-specific QS cost plan/BOQ must replace these assumptions.</div>
+<p class="source" style="color:#c3cbc6;margin-top:15px">Current references include 2026 Nigerian construction-cost guides and recent quantity-surveyor commentary, which show broad market variation by specification, location, soil and scope.</p>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="head"><div><div class="eyebrow">07 / Operating + Affordability</div><h2>Affordable to students. Sustainable to operate.</h2></div><p>The financial model needs to separate recurring accommodation revenue from supporting service and enterprise revenue.</p></div>
+<table class="table"><tr><th>Revenue / support channel</th><th>Role in model</th></tr>
+<tr><td>Accommodation</td><td>Core recurring revenue; fee bands should follow cost, demand, occupancy and affordability analysis.</td></tr>
+<tr><td>Utilities / service charges</td><td>Transparent recovery of defined services where appropriate.</td></tr>
+<tr><td>Student enterprise</td><td>Vendor/space arrangements and service commissions designed to be fair and sustainable.</td></tr>
+<tr><td>Laundry / printing / mini-mart</td><td>Everyday service and convenience revenue.</td></tr>
+<tr><td>CBT / training / events</td><td>Ancillary revenue from spaces that can serve residents and external users.</td></tr>
+<tr><td>Shuttle</td><td>Potential transport pass or integrated accommodation/service model.</td></tr>
+<tr><td>Partnership / sponsorship</td><td>Targeted support for learning, enterprise, transport, technology or amenities.</td></tr></table>
+<div class="callout" style="margin-top:16px"><strong>Local benchmark:</strong> In July 2026, the University of Ilorin reported approved accommodation fees of ₦204,000 for four-person rooms and ₦255,000 for two-person rooms in privately owned hostels on the university premises, plus a ₦36,400 utility charge. These are benchmarks for context, not KSRV prices.</div>
+<p class="source">Source: <a href="https://www.unilorin.edu.ng/unilorin-restates-commitment-to-excellent-students-welfare/" target="_blank">University of Ilorin, July 2026</a>.</p>
+</div></section>
+
+<section class="section cream"><div class="wrap">
+<div class="head"><div><div class="eyebrow">08 / Student Enterprise + Community</div><h2>The village should create opportunity, not just rent rooms.</h2></div><p>Students can operate properly managed small businesses and services while studying.</p></div>
+<table class="table"><tr><th>Area</th><th>Examples</th></tr><tr><td>Food</td><td>Meals, snacks, breakfast and delivery.</td></tr><tr><td>Laundry</td><td>Wash, iron, collect and deliver.</td></tr><tr><td>Printing</td><td>Print, bind, photocopy and design.</td></tr><tr><td>Technology</td><td>Device support and digital services.</td></tr><tr><td>Mini-mart</td><td>Convenience products and essentials.</td></tr><tr><td>Grooming</td><td>Barbering, hair and personal care.</td></tr><tr><td>Creative</td><td>Photography, media, design and content.</td></tr><tr><td>Tutoring</td><td>Peer academic support and tutorials.</td></tr></table>
+<div class="callout" style="margin-top:16px"><strong>Selection principle:</strong> academic standing, good conduct, capability, service quality, safety/hygiene and idea viability can all be considered. CGPA can be one criterion, not the only criterion.<br><br><strong>Faith foundation:</strong> KSRV is Christ-centered without being a church compound. Christian faith shapes values and culture; optional fellowship, prayer and Bible study can exist for students who choose to participate.</div>
+</div></section>
+
+<section class="section dark"><div class="wrap">
+<div class="head"><div><div class="eyebrow">09 / Infrastructure + Risk</div><h2>Reliability is part of the product.</h2></div><p>The feasibility study must test both capital risk and operating risk.</p></div>
+<table class="table"><tr><th>Risk</th><th>Feasibility control</th></tr><tr><td>Cost inflation</td><td>Current supplier quotes, QS updates, phased procurement and contingency.</td></tr><tr><td>Land/title</td><td>Independent title search, survey, valuation and planning due diligence.</td></tr><tr><td>Soil / drainage</td><td>Geotechnical and flood/drainage studies.</td></tr><tr><td>Power</td><td>Hybrid strategy, energy audit and maintenance plan.</td></tr><tr><td>Water</td><td>Yield test, storage sizing, treatment requirement and maintenance plan.</td></tr><tr><td>Internet</td><td>Primary + backup service design and capacity planning.</td></tr><tr><td>Occupancy</td><td>Demand study, institutional relationships, room mix and staged construction.</td></tr><tr><td>Transport</td><td>Route planning, utilisation, maintenance reserve and demand-based scheduling.</td></tr><tr><td>Operating complexity</td><td>Village-management structure, SOPs, resident rules and maintenance system.</td></tr></table>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="head"><div><div class="eyebrow">10 / Decision Gates</div><h2>Do not build until the evidence is ready.</h2></div><p>Each gate should answer a different question before the next major commitment.</p></div>
+<div class="gates">
+<div class="gate"><b>GATE 1</b><h3>Site</h3><p>Title, access, planning, utilities, drainage and acquisition terms are credible.</p></div>
+<div class="gate"><b>GATE 2</b><h3>Design</h3><p>Master plan, room programme, floor areas and technical strategy are defined.</p></div>
+<div class="gate"><b>GATE 3</b><h3>Cost</h3><p>QS cost plan, professional fees, external works and contingency are quantified.</p></div>
+<div class="gate"><b>GATE 4</b><h3>Market</h3><p>Student demand, institutions, competition, affordability and shuttle demand are tested.</p></div>
+<div class="gate"><b>GATE 5</b><h3>Operations</h3><p>Staffing, maintenance, utilities, security, enterprise and digital systems are viable.</p></div>
+<div class="gate"><b>GATE 6</b><h3>Funding</h3><p>Capital structure, investor/finance terms and land contribution are defined.</p></div>
+<div class="gate"><b>GATE 7</b><h3>Approvals</h3><p>Planning, building and other required approvals have a clear route.</p></div>
+<div class="gate"><b>GATE 8</b><h3>Build</h3><p>Final design, procurement route, contracts, budget and risk controls are ready.</p></div>
+</div>
+</div></section>
+
+<section class="section cream"><div class="wrap">
+<div class="head"><div><div class="eyebrow">11 / Next 180 Days</div><h2>From concept to investment-ready feasibility.</h2></div><p>The next step is to replace assumptions with professional evidence.</p></div>
+<table class="table"><tr><th>Workstream</th><th>Output</th></tr><tr><td>Site search</td><td>3–5 candidate sites and a scored due-diligence matrix.</td></tr><tr><td>Market study</td><td>Student demand, institutions, competing accommodation and affordability analysis.</td></tr><tr><td>Master planning</td><td>Site plan, buildings, circulation, parking, recreation, green space and utilities.</td></tr><tr><td>Architecture</td><td>Concept plans for Blocks A–D and core facilities.</td></tr><tr><td>QS / cost planning</td><td>Elemental cost plan, cost/m² validation and preliminary BOQ.</td></tr><tr><td>Financial model</td><td>Capex, opex, occupancy, pricing scenarios, cash flow and sensitivity analysis.</td></tr><tr><td>Operating plan</td><td>Staffing, security, maintenance, digital systems, enterprise and shuttle.</td></tr><tr><td>Partnership plan</td><td>Land, capital, technical, institution, service and enterprise partners.</td></tr><tr><td>Approval plan</td><td>Planning, land and construction approval pathway.</td></tr></table>
+<div class="callout" style="margin-top:16px"><strong>Final feasibility deliverable:</strong> a preferred site + concept master plan + verified project programme + QS-backed capital budget + operating budget + pricing/affordability model + financing structure + approvals roadmap + partner/investor package.</div>
+<div style="margin-top:18px"><a class="btn green" href="./index.html">Back to KSRV Project</a></div>
+</div></section>
+
+<footer class="footer"><div class="wrap"><strong>KSRV — KWARA STUDENT RESIDENT VILLAGE</strong><p>More than a place to stay. A place to become.</p><p>WhatsApp: 0907 485 6424 • Calls: 0906 702 2881 • Email: omobabatogaju@gmail.com</p><p>Planning document only. Final technical, legal, financial and investment decisions require qualified professional work.</p></div></footer>
+</body></html>
