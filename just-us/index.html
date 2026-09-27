@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Just US — personalized magazines for graduations, birthdays, anniversaries, love stories, family milestones and achievements.">
+<meta name="theme-color" content="#17130e">
+<title>Just US — Your Moments. Your Story. Your Magazine.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#17130e;--cream:#fbf6ea;--paper:#f0e5d4;--gold:#c99825;--gold2:#efc95d;--muted:#746b60;--line:#ddd0ba;--white:#fffdf8;--shadow:0 20px 55px rgba(33,24,12,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}img{display:block;width:100%;height:100%;object-fit:cover}.wrap{width:min(1180px,92%);margin:auto}
+.nav{position:sticky;top:0;z-index:30;background:rgba(251,246,234,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(23,19,14,.08)}.navin{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font:700 29px/1 "Playfair Display",serif}.brand span{color:var(--gold);font-style:italic}.links{display:flex;gap:22px;font-size:11px;text-transform:uppercase;letter-spacing:.13em;font-weight:800}.cta,.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:13px 19px;font-weight:800;font-size:13px;border:1px solid transparent;cursor:pointer}.cta,.btn.dark{background:var(--ink);color:#fff}.btn.gold{background:var(--gold);color:var(--ink)}.btn.light{border-color:var(--line);background:transparent}
+.hero{padding:78px 0 70px;background:linear-gradient(180deg,#fbf6ea 0%,#f7eedf 100%)}.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:#8b6918}.hero h1{font:700 clamp(56px,8vw,105px)/.91 "Playfair Display",serif;letter-spacing:-.055em;margin:17px 0}.hero h1 span{color:var(--gold)}.lead{font-size:19px;max-width:690px;color:#51483e}.heroBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.heroMeta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.pill{padding:8px 12px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted)}
+.heroPhoto{height:600px;position:relative}.heroPhoto img{border-radius:28px;box-shadow:var(--shadow)}.heroCaption{position:absolute;left:-18px;bottom:22px;background:rgba(255,253,248,.96);border:1px solid var(--line);padding:16px 18px;border-radius:18px;box-shadow:0 15px 35px rgba(33,24,12,.11);max-width:265px}.heroCaption b{display:block;font:600 21px/1.1 "Playfair Display",serif}.heroCaption span{display:block;margin-top:7px;font-size:12px;color:var(--muted)}
+.band{background:var(--ink);color:#fff;padding:17px;text-align:center;font-size:12px;font-weight:800;letter-spacing:.06em}
+.section{padding:92px 0}.alt{background:var(--paper)}.head{display:flex;justify-content:space-between;gap:36px;align-items:end;margin-bottom:40px}.head h2{font:600 clamp(36px,5vw,64px)/1 "Playfair Display",serif;letter-spacing:-.04em;margin:8px 0}.head p{max-width:520px;color:var(--muted)}
+.story{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}.quote{font:600 clamp(31px,4vw,52px)/1.06 "Playfair Display",serif;margin:0 0 20px}.story p{color:#514940}.storyCard{background:var(--ink);color:#fff;padding:36px;border-radius:25px;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end}.storyCard b{color:var(--gold2);font-size:11px;letter-spacing:.17em}.storyCard h3{font:600 44px/1 "Playfair Display",serif;margin:16px 0}.storyCard p{color:#d8d1c8;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--white);border:1px solid var(--line);border-radius:21px;padding:26px}.card .num{font-size:11px;letter-spacing:.15em;font-weight:900;color:var(--gold)}.card h3{font:600 28px/1.05 "Playfair Display",serif;margin:22px 0 8px}.card p{margin:0;color:var(--muted);font-size:14px}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.price{background:var(--white);border:1px solid var(--line);border-radius:23px;padding:28px;position:relative}.price.featured{border-color:var(--gold);box-shadow:0 16px 42px rgba(191,145,32,.12)}.badge{position:absolute;right:16px;top:16px;background:var(--gold);padding:6px 9px;border-radius:999px;font-size:10px;font-weight:900}.price small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8d6d1e;font-weight:900}.price h3{font:600 31px/1.05 "Playfair Display",serif;margin:14px 0 5px}.amount{font-size:34px;font-weight:900;margin-bottom:12px}.price p,.price li{font-size:13px;color:var(--muted)}.price ul{padding-left:18px;line-height:1.9}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.featurePhoto{height:610px;border-radius:26px;overflow:hidden;position:relative}.featurePhoto img{transition:transform .35s ease}.featurePhoto:hover img{transform:scale(1.025)}.photoLabel{position:absolute;left:20px;bottom:20px;background:rgba(23,19,14,.86);color:#fff;border-radius:15px;padding:13px 15px}.photoLabel strong{display:block;font:600 24px/1 "Playfair Display",serif}.photoLabel span{font-size:12px;color:#ddd4ca}.sidePhotos{display:grid;grid-template-rows:1fr 1fr;gap:14px}.side{border-radius:26px;overflow:hidden;position:relative;min-height:290px}.side div{position:absolute;inset:auto 16px 16px 16px;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.45);font:600 27px/1 "Playfair Display",serif}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px}.step .n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}.step h3{font:600 24px/1.05 "Playfair Display",serif;margin:18px 0 7px}.step p{font-size:13px;color:var(--muted);margin:0}
+.testimonial{display:grid;grid-template-columns:.75fr 1.25fr;gap:30px;align-items:stretch}.tCard{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:28px}.tCard h3{font:600 30px/1.05 "Playfair Display",serif;margin:0 0 10px}.tCard p{color:var(--muted);font-size:14px}.quoteBig{background:var(--ink);color:#fff;border-radius:22px;padding:38px}.quoteBig p{font:600 clamp(28px,4vw,50px)/1.08 "Playfair Display",serif;margin:0}.quoteBig span{display:block;color:#bfb6aa;margin-top:24px;font-size:12px}
+.order{background:var(--ink);color:#fff}.orderGrid{display:grid;grid-template-columns:1fr .95fr;gap:54px;align-items:start}.order h2{font:600 clamp(42px,6vw,74px)/.98 "Playfair Display",serif;margin:8px 0 16px}.order p{color:#d3cbc0;max-width:620px}.form{display:grid;gap:11px}.form label{display:grid;gap:6px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:#ddd4c8}.form input,.form select,.form textarea{width:100%;padding:14px 15px;border-radius:13px;border:1px solid rgba(255,255,255,.12);font:inherit;background:#fffdf8;color:var(--ink)}.form textarea{min-height:130px}.form button{width:100%}.fine{font-size:11px;color:#a79f96}
+.footer{background:#100d09;color:#fff;padding:45px 0 60px}.footerTop{display:flex;justify-content:space-between;gap:30px;align-items:end}.footer p{color:#aaa197;font-size:13px}.footer .fine{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+@media(max-width:900px){.links{display:none}.heroGrid,.story,.gallery,.testimonial,.orderGrid{grid-template-columns:1fr}.grid3,.pricing,.steps{grid-template-columns:1fr 1fr}.heroPhoto{height:520px}.head{display:block}.footerTop{display:block}.heroCaption{left:14px}}
+@media(max-width:600px){.section{padding:70px 0}.grid3,.pricing,.steps{grid-template-columns:1fr}.hero h1{font-size:58px}.heroPhoto{height:430px}.sidePhotos{grid-template-rows:1fr 1fr}.quoteBig p{font-size:34px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap navin"><a class="brand" href="#top">Just <span>US</span></a><div class="links"><a href="#about">About</a><a href="#editions">Editions</a><a href="#pricing">Pricing</a><a href="#gallery">Gallery</a><a href="#order">Create Yours</a></div><a class="cta" href="#order">Create a Magazine</a></div></nav>
+
+<header id="top" class="hero"><div class="wrap heroGrid">
+<div><div class="eyebrow">Personalized magazines • Kwara State • Nationwide delivery</div>
+<h1>Your moments.<br><span>Your story.</span><br>Your magazine.</h1>
+<p class="lead">We turn graduations, birthdays, anniversaries, love stories, family milestones and achievements into beautiful magazines you can hold, keep and revisit.</p>
+<div class="heroBtns"><a class="btn dark" href="#order">Create Yours</a><a class="btn light" href="#pricing">See Pricing</a></div>
+<div class="heroMeta"><span class="pill">₦10k • ₦15k • ₦20k</span><span class="pill">Kwara State</span><span class="pill">Nationwide delivery</span></div>
+</div>
+<div class="heroPhoto"><img src="https://images.unsplash.com/photo-1719606545131-51daa664485d?auto=format&fit=crop&fm=jpg&q=82&w=1600" alt="Black African graduate celebrating a milestone"><div class="heroCaption"><b>Some memories deserve more than a gallery.</b><span>Turn the moment into something you can hold onto.</span></div></div>
+</div></header>
+
+<div class="band">DON'T JUST TAKE PICTURES. TELL THE STORY. KEEP THE MEMORY.</div>
+
+<section id="about" class="section"><div class="wrap story"><div><div class="eyebrow">Why Just US exists</div><h2 class="quote">“A moment can happen once and still be worth revisiting for years.”</h2><p>I’m <strong>Timothy</strong>, the founder of Just US. I created the brand because so many beautiful milestones end up as photos buried inside a phone gallery.</p><p>We give those moments a place of their own — designed around your people, your journey, your words and the memories that made the day matter.</p><p><strong>Not just a magazine.</strong> A personal keepsake built around your story.</p></div><div class="storyCard"><b>THE JUST US IDEA</b><h3>Celebrate.<br>Remember.<br>Relive.</h3><p>Give someone more than a gift. Give them a story they can open again years from now.</p></div></div></section>
+
+<section id="editions" class="section alt"><div class="wrap"><div class="head"><div><div class="eyebrow">Made for your moment</div><h2>There is a Just US edition for it.</h2></div><p>Every edition is personalized. We design around the occasion, the people, the pictures and the story you want to preserve.</p></div><div class="grid3">
+<div class="card"><span class="num">01</span><h3>Graduation</h3><p>Your journey, classmates, achievements, memories and the people who helped you get there.</p></div>
+<div class="card"><span class="num">02</span><h3>Birthday</h3><p>A magazine built around one person — personality, milestones, friends, family and favourite memories.</p></div>
+<div class="card"><span class="num">03</span><h3>Anniversary</h3><p>Your story together, your favourite pictures, messages, milestones and the moments that made you “us”.</p></div>
+<div class="card"><span class="num">04</span><h3>Love Story</h3><p>From the first hello to now — document the journey and celebrate the relationship.</p></div>
+<div class="card"><span class="num">05</span><h3>Family</h3><p>Family memories, reunions, birthdays and milestones brought together in one keepsake.</p></div>
+<div class="card"><span class="num">06</span><h3>Achievement</h3><p>A polished record of the work, growth, wins and people behind a meaningful achievement.</p></div>
+</div></div></section>
+
+<section id="pricing" class="section"><div class="wrap"><div class="head"><div><div class="eyebrow">Simple pricing</div><h2>Pick the level that fits your story.</h2></div><p>Pricing currently ranges from ₦10,000 to ₦20,000 depending on the number of pages and final scope.</p></div><div class="pricing">
+<div class="price"><small>₦10,000</small><h3>Mini Edition</h3><p>A clean, memorable keepsake for a smaller celebration.</p><ul><li>Personalized cover</li><li>Curated story/photo layout</li><li>Compact edition</li><li>Print-ready design</li></ul></div>
+<div class="price featured"><span class="badge">POPULAR</span><small>₦15,000</small><h3>Story Edition</h3><p>For fuller stories and bigger moments.</p><ul><li>More pages</li><li>Multiple photo sections</li><li>Quotes, messages & highlights</li><li>Designed as a proper keepsake</li></ul></div>
+<div class="price"><small>₦20,000</small><h3>Legacy Edition</h3><p>For moments that deserve the full treatment.</p><ul><li>Extended personalized layout</li><li>More room for your journey</li><li>Deeper storytelling sections</li><li>Premium magazine experience</li></ul></div>
+</div></div></section>
+
+<section id="gallery" class="section alt"><div class="wrap"><div class="head"><div><div class="eyebrow">Real moments</div><h2>We want the page to feel human.</h2></div><p>We use natural photography and editorial layouts rather than glossy, artificial-looking visuals. Your own photos become the heart of the final magazine.</p></div>
+<div class="gallery"><div class="featurePhoto"><img src="https://images.unsplash.com/photo-1707467390539-8ada3e4e2c2a?auto=format&fit=crop&fm=jpg&q=82&w=1600" alt="Family gathering and shared memories"><div class="photoLabel"><strong>Family & milestones</strong><span>A story worth keeping together.</span></div></div>
+<div class="sidePhotos"><div class="side"><img src="https://images.unsplash.com/photo-1602255653489-1d3b7726f26f?auto=format&fit=crop&fm=jpg&q=82&w=1200" alt="Couple celebrating a relationship milestone"><div>Love stories & anniversaries</div></div><div class="side"><img src="https://images.unsplash.com/photo-1660847426453-5d19b13e76c0?auto=format&fit=crop&fm=jpg&q=82&w=1200" alt="Friends posing together and celebrating"><div>Birthdays, friends & celebrations</div></div></div></div>
+<p class="fine" style="margin-top:16px">Sample photography sourced from Unsplash free-to-use photographs; your finished magazine will be built from the photos and content you provide.</p>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="head"><div><div class="eyebrow">The process</div><h2>Simple from first message to finished magazine.</h2></div><p>No long process. We collect the story, shape it into an editorial layout, and guide you through the finish.</p></div><div class="steps">
+<div class="step"><div class="n">1</div><h3>Tell us the moment</h3><p>Tell us what you are celebrating, who it is for and what makes the story special.</p></div>
+<div class="step"><div class="n">2</div><h3>Send your materials</h3><p>Share your photos, names, dates, messages, quotes and any details that matter.</p></div>
+<div class="step"><div class="n">3</div><h3>We design the story</h3><p>We arrange the content into a personalized magazine built around the journey.</p></div>
+<div class="step"><div class="n">4</div><h3>Review + print</h3><p>We finalize the edition and coordinate printing and delivery with you.</p></div>
+</div></div></section>
+
+<section class="section alt"><div class="wrap testimonial"><div class="tCard"><div class="eyebrow">The promise</div><h3>Not just a photo collection.</h3><p>We are building Just US around storytelling: the person, the journey, the people behind it, the little details and the memories you never want to lose.</p></div><div class="quoteBig"><p>“Some memories deserve more than a gallery.”</p><span>JUST US — Your Moments. Your Story. Your Magazine.</span></div></div></section>
+
+<section id="order" class="section order"><div class="wrap orderGrid"><div><div class="eyebrow">Create your edition</div><h2>Let’s make your moment something you can hold.</h2><p>Tell us what you are celebrating. Once you submit, WhatsApp opens with your details already arranged so you can send the enquiry directly to Just US.</p><p><strong>Based in Kwara State • Nationwide delivery</strong></p></div>
+<form class="form" id="orderForm">
+<label>Your name *<input id="name" required placeholder="Full name"></label>
+<label>What are we creating? *<input id="occasion" required placeholder="Graduation, birthday, anniversary, love story..."></label>
+<label>Your WhatsApp / phone *<input id="phone" required placeholder="080..."></label>
+<label>Email <input id="email" type="email" placeholder="Optional"></label>
+<label>Preferred package <select id="pkg"><option value="">Select</option><option>₦10,000</option><option>₦15,000</option><option>₦20,000</option><option>Not sure yet</option></select></label>
+<label>When is the occasion? <input id="date" placeholder="Date or approximate date"></label>
+<label>Tell us about the story <textarea id="idea" placeholder="Who is it for? What should the magazine capture? Any theme or special details?"></textarea></label>
+<button class="btn gold" type="submit">Send My Enquiry to WhatsApp</button>
+<div class="fine">WhatsApp: 0907 485 6424</div>
+</form></div></section>
+
+<footer class="footer"><div class="wrap"><div class="footerTop"><div><a class="brand" href="#top">Just <span>US</span></a><p>Your moments. Your story. Your magazine.</p></div><div><p><strong>Kwara State</strong> • Nationwide delivery</p><p>WhatsApp: 0907 485 6424</p></div></div><div class="fine">© 2026 Just US. Founded by Timothy. Sample photography from Unsplash.</div></div></footer>
+
+<script>
+document.getElementById('orderForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const v=id=>document.getElementById(id).value.trim();
+ const body=[
+ 'Hello Just US,',
+ '',
+ 'I would like to create a personalized magazine.',
+ '',
+ 'NAME: '+v('name'),
+ 'OCCASION / EDITION: '+v('occasion'),
+ 'WHATSAPP / PHONE: '+v('phone'),
+ 'EMAIL: '+(v('email')||'Not provided'),
+ 'PREFERRED PACKAGE: '+(v('pkg')||'Not sure yet'),
+ 'OCCASION DATE: '+(v('date')||'Not provided'),
+ '',
+ 'STORY / DETAILS:',
+ v('idea')||'Not provided',
+ '',
+ 'Please contact me so we can discuss the magazine.'
+ ].join('\n');
+ window.location.href='https://wa.me/2349074856424?text='+encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
