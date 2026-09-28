@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102d22"><title>Bible Streak — App</title>
+<style>
+:root{--ink:#10130f;--paper:#f5f1e8;--cream:#fffdf7;--green:#123526;--gold:#c5a15c;--muted:#6d6a62;--line:#ded7c9}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}.shell{width:min(1120px,92%);margin:auto}.top{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center}.topin{width:100%;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900}.brand span{color:var(--gold)}.back{color:var(--ink);text-decoration:none;font-weight:700;font-size:14px}.hero{padding:70px 0 40px}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:800;color:#285841}.hero h1{font:700 clamp(48px,7vw,82px)/.95 Georgia,serif;letter-spacing:-3px;margin:16px 0}.hero p{max-width:650px;color:var(--muted);font-size:18px;line-height:1.7}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;padding-bottom:60px}.card{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:28px}.dark{background:var(--green);color:#fff;border-color:var(--green)}.dark p{color:#d9ddd7}.scripture{font:26px/1.55 Georgia,serif}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn{border:0;border-radius:999px;padding:13px 18px;background:var(--ink);color:#fff;font-weight:800;cursor:pointer;text-decoration:none}.btn.gold{background:var(--gold);color:var(--ink)}.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 60px}.nav a{padding:16px;border:1px solid var(--line);border-radius:16px;text-decoration:none;color:var(--ink);font-weight:800;background:#fff}.foot{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}@media(max-width:760px){.grid{grid-template-columns:1fr}.nav{grid-template-columns:1fr 1fr}}
+</style></head>
+<body>
+<header class="top"><div class="shell topin"><div class="brand">Bible<span>Streak</span></div><a class="back" href="./">← Bible Streak home</a></div></header>
+<main class="shell">
+<section class="hero"><div class="eyebrow">YOUR DAILY WALK</div><h1>Stay with the Word.</h1><p>Read Scripture. Keep your streak. Reflect honestly. Pray. Come back tomorrow. Bible Streak is designed to make returning to God’s Word a simple daily rhythm.</p></section>
+<section class="grid">
+<div class="card dark"><div class="eyebrow" style="color:#c5a15c">Today</div><h2>John 15</h2><p class="scripture">“Abide in me, and I in you. As the branch cannot bear fruit of itself...”</p><div class="actions"><a class="btn gold" href="#reader">Read Scripture</a><button class="btn" onclick="speak()">Listen</button></div></div>
+<div class="card"><h2>Your rhythm</h2><p>Build a quiet daily habit around Scripture instead of chasing perfection.</p><p><strong>🔥 0 day streak</strong></p><p><strong>✓ Today</strong> — Not completed</p><a class="btn" href="#reflection">Reflect</a></div>
+</section>
+<section id="reader" class="card" style="margin-bottom:18px"><div class="eyebrow">Scripture</div><h2>John 15</h2><p class="scripture">I am the true vine, and my Father is the husbandman. Every branch in me that beareth not fruit he taketh away...</p><p style="color:var(--muted)">The full Bible reader and authorized translation access will be connected here.</p></section>
+<section id="reflection" class="card"><div class="eyebrow">Reflection</div><h2>What is God showing you today?</h2><textarea style="width:100%;min-height:140px;border:1px solid var(--line);border-radius:14px;padding:14px;font:inherit" placeholder="Write your reflection..."></textarea><div class="actions"><button class="btn gold" onclick="alert('Reflection saved on this device for now.')">Save Reflection</button></div></section>
+<div class="nav"><a href="#reader">Read</a><a href="#reflection">Reflect</a><a href="./plans.html">Reading Plans →</a><a href="../">Son of the Most High →</a></div>
+</main><footer class="foot"><div class="shell">Bible Streak • Christ • Scripture • Practice</div></footer>
+<script>function speak(){if(!('speechSynthesis' in window)){alert('Audio is not supported in this browser.');return}speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance('I am the true vine, and my Father is the husbandman. Abide in me, and I in you.'))}</script>
+</body></html>
