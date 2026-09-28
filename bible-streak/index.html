@@ -61,7 +61,7 @@ async function choosePlan(id){if(!session)return openAuth();toast('Plan selected
 async function loadFeed(){if(!session){q('#feed').innerHTML='<p class="lead">Sign in to join the community.</p>';return}const r=await db.from('community_posts').select('id,body,post_type,created_at,author_id').order('created_at',{ascending:false}).limit(20);const ids=[...new Set((r.data||[]).map(x=>x.author_id))];let names={};if(ids.length){const p=await db.from('profiles').select('id,display_name').in('id',ids);(p.data||[]).forEach(x=>names[x.id]=x.display_name)}q('#feed').innerHTML=(r.data||[]).map(x=>'<div class="row"><div class="avatar">'+esc((names[x.author_id]||'B')[0].toUpperCase())+'</div><div><b>'+esc(names[x.author_id]||'Bible Streak member')+'</b><p class="lead">'+esc(x.body)+'</p><small>'+esc(x.post_type)+' · '+new Date(x.created_at).toLocaleDateString()+'</small></div></div>').join('')||'<p class="lead">Be the first to share.</p>'}
 q('#post').onclick=async()=>{if(!session)return openAuth();const body=q('#postText').value.trim();if(!body)return toast('Write something first');const r=await db.from('community_posts').insert({author_id:session.user.id,post_type:'encouragement',body});if(r.error)return toast(r.error.message);q('#postText').value='';toast('Shared with the community');loadFeed()}
 function renderProgress(){renderStreak()}
-db.auth.onAuthStateChange(()=>setTimeout(init,0));init();
+db.auth.onAuthStateChange(()=>setTimeout(init,0));initReader();init();
 </script>
 </body>
 </html>
