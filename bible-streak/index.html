@@ -102,7 +102,7 @@ function routeFromHash(){
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));
 window.addEventListener('popstate',routeFromHash);
 window.addEventListener('hashchange',routeFromHash);
-async function savedItems(){try{return JSON.parse(localStorage.getItem('savedItems')||'[]')}catch(e){return[]}}
+function savedItems(){try{return JSON.parse(localStorage.getItem('savedItems')||'[]')}catch(e){return[]}}
 function setSavedItems(items){localStorage.setItem('savedItems',JSON.stringify(items));}
 function currentVerseRef(n){return books[bookEl.value][0]+' '+chapterEl.value+':'+n}
 async function loadChapter(){
@@ -183,7 +183,8 @@ function openReference(ref){
  if(m[3])setTimeout(()=>verseAction(Number(m[3])),250);
 }
 function continueReading(){openReference(lastReadRef())}
-function openDailyVerse(){openReference(document.getElementById('dailyVerseRef').textContent)}\nfunction openTodayReading(){const ref=document.getElementById('todayReadingRef')?.textContent||'John 15:5';openReference(ref)}
+function openDailyVerse(){openReference(document.getElementById('dailyVerseRef').textContent)}
+function openTodayReading(){const ref=document.getElementById('todayReadingRef')?.textContent||'John 15:5';openReference(ref)}
 function refreshHome(){
  const ref=lastReadRef();document.getElementById('homeLastRead').textContent=ref;
  const d=new Date();document.getElementById('homeGreeting').textContent=d.getHours()<12?'Good morning':d.getHours()<18?'Good afternoon':'Good evening';
@@ -205,6 +206,7 @@ const PLAN_FALLBACKS={
 'Build Your Faith':['Hebrews 11:1-6','Romans 10:17','James 1:2-8','Mark 9:14-29','Ephesians 6:10-18','2 Corinthians 5:7','Galatians 2:20','Matthew 17:14-20','1 John 5:1-5','Jude 1:20-23','Romans 5:1-5','Philippians 1:3-6','1 Thessalonians 5:16-24','2 Timothy 1:6-9','Psalm 37:3-7','Proverbs 16:3','John 20:24-29','Matthew 6:25-34','Hebrews 12:1-3','1 Peter 1:3-9','2 Corinthians 4:16-18']
 };
 let planCatalog={};
+let cloudPlanDone={};
 async function loadPlanCatalog(){
  if(!sb)return;
  const {data,error}=await sb.from('reading_plans').select('id,slug,title,duration_days').eq('active',true);
@@ -223,6 +225,7 @@ async function loadCloudPlanProgress(){
  if(active&&planCatalog[active]){
    const plan=planCatalog[active];
    const done=(data||[]).filter(x=>x.plan_id===plan.id).map(x=>Number(x.day_number));
+   cloudPlanDone[plan.slug]=done;
    localStorage.setItem('cloudPlanDone',JSON.stringify(done));
    const next=Math.min((Math.max(0,...done)+1)||1,plan.duration_days);
    if(done.length)localStorage.setItem('planDay',String(next));
