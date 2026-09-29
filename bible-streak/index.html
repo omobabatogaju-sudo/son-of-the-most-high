@@ -388,4 +388,29 @@ function openSearchResult(reference){
 }
 function openBookSearch(name){const i=books.findIndex(b=>b[0]===name);if(i<0)return;bookEl.value=i;fillChapters();showView('bible')}
 updateStats();renderSaved();renderPlan();renderPlanDetail();renderHistory();renderProfileJourney();loadPlanCatalog();if(sb)syncProfile();document.getElementById('journalText').value=localStorage.getItem('journal')||''; document.title='Bible Streak — Read the Bible, Stay in the Word'; routeFromHash();
-</script></div></body></html>
+</script></div><script>
+(function(){
+  function navigate(view){
+    var target=document.getElementById(view);
+    if(!target)return;
+    document.querySelectorAll('.view').forEach(function(el){el.classList.remove('active');});
+    target.classList.add('active');
+    document.querySelectorAll('[data-view]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-view')===view);});
+    try{history.pushState({view:view},'',location.pathname+'#'+view);}catch(e){}
+    window.scrollTo(0,0);
+  }
+  window.showView=navigate;
+  window.goToBible=window.goToBible||function(){navigate('bible');};
+  window.goToPlan=window.goToPlan||function(){navigate('planDetail');};
+  document.addEventListener('click',function(e){
+    var nav=e.target.closest('[data-view]');
+    if(nav){e.preventDefault();e.stopPropagation();navigate(nav.getAttribute('data-view'));return;}
+  },true);
+  window.addEventListener('hashchange',function(){
+    var v=location.hash.slice(1);
+    if(document.getElementById(v))navigate(v);
+  });
+  var initial=location.hash.slice(1);
+  if(initial&&document.getElementById(initial))navigate(initial);
+})();
+</script></body></html>
