@@ -371,13 +371,13 @@ async function searchBible(e){
    const head='<div class="card"><div class="eyebrow">SCRIPTURE SEARCH</div><h3 style="margin:6px 0">Results for “'+escapeHtml(q)+'”</h3><p class="muted">'+(d.query?.count??sorted.length)+' matching results</p></div>';
    const resultCards=sorted.map(x=>'<button class="card searchResult" style="width:100%;text-align:left;display:block;margin-top:10px;cursor:pointer" data-ref="'+escapeHtml(x.reference)+'" onclick="openSearchResult(this.dataset.ref)"><b>'+escapeHtml(x.reference)+'</b><p class="muted" style="margin:7px 0 0">'+escapeHtml(x.text)+'</p></button>').join('');
    if(bookHits.length){
-     box.innerHTML='<div class="card"><div class="eyebrow">BOOKS</div>'+bookHits.map(x=>'<button class="tool" style="margin:5px" onclick="openBookSearch(\\''+x.replace(/\\'/g,"\\\\'")+\\'\\')">'+escapeHtml(x)+'</button>').join('')+'</div>'+(sorted.length?head+resultCards:'<div class="empty">No verse-text matches found.</div>');
+     box.innerHTML='<div class="card"><div class="eyebrow">BOOKS</div>'+bookHits.map(x=>'<button class="tool" type="button" style="margin:5px" data-book="'+escapeHtml(x)+'" onclick="openBookSearch(this.dataset.book)">'+escapeHtml(x)+'</button>').join('')+'</div>'+(sorted.length?head+resultCards:'<div class="empty">No verse-text matches found.</div>');
    }else{
      box.innerHTML=sorted.length?head+resultCards:'<div class="empty">No Scripture matches found. Try a word such as faith, peace, grace, hope, or love.</div>';
    }
  }catch(err){
    box.innerHTML=bookHits.length
-     ?'<div class="card"><div class="eyebrow">BOOKS</div>'+bookHits.map(x=>'<button class="tool" style="margin:5px" onclick="openBookSearch(\\''+x.replace(/\\'/g,"\\\\'")+\\'\\')">'+escapeHtml(x)+'</button>').join('')+'</div><div class="empty">Text search is temporarily unavailable.</div>'
+     ?'<div class="card"><div class="eyebrow">BOOKS</div>'+bookHits.map(x=>'<button class="tool" type="button" style="margin:5px" data-book="'+escapeHtml(x)+'" onclick="openBookSearch(this.dataset.book)">'+escapeHtml(x)+'</button>').join('')+'</div><div class="empty">Text search is temporarily unavailable.</div>'
      :'<div class="empty">Text search is temporarily unavailable. Try a Bible reference such as John 3:16.</div>';
  }
 }
