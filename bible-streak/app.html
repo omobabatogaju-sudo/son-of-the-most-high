@@ -130,8 +130,16 @@ async function completePlanDay(){
 }
 function sharePlan(){const p=currentPlan();if(navigator.share)navigator.share({title:p,text:'Join me on '+p+' with Bible Streak.'});else{navigator.clipboard?.writeText(location.href);toast('Plan link copied.')}}
 function renderPlan(){
- const p=localStorage.getItem('activePlan'),x=document.getElementById('activePlanText');
- if(x)x.textContent=p?p+' • '+(completedPlanDays().length)+' day'+(completedPlanDays().length===1?'':'s')+' complete':'No active plan yet.';
+ const p=localStorage.getItem('activePlan'),x=document.getElementById('activePlanText'),done=completedPlanDays();
+ if(x)x.textContent=p?p+' • '+done.length+' day'+(done.length===1?'':'s')+' complete':'No active plan yet.';
+ document.querySelectorAll('.plan').forEach(card=>{
+   const title=card.querySelector('h2')?.textContent?.trim(), info=planCatalog[title], total=info?.duration_days||PLAN_DURATIONS[title]||0;
+   if(!title||!total)return;
+   const count=title===p?done.length:0;
+   const bar=card.querySelector('.progress i'), label=card.querySelector('.progress')?.parentElement?.querySelector('p.muted');
+   if(bar)bar.style.width=Math.min(100,(count/total)*100)+'%';
+   if(label)label.textContent=count+' of '+total+' days';
+ }
 }function saveJournal(){const t=document.getElementById('journalText').value.trim();if(!t)return;localStorage.setItem('journal',t);localStorage.setItem('refCount',Number(localStorage.getItem('refCount')||0)+1);updateStats();toast('Saved on this device.')}
 function clearJournal(){document.getElementById('journalText').value=''}
 function post(){const t=document.getElementById('postText').value.trim();if(!t)return;const d=document.createElement('div');d.className='card';d.innerHTML='<b>Encouragement</b><p class="muted">'+t.replace(/</g,'&lt;')+'</p><small>Just now</small>';document.getElementById('posts').prepend(d);document.getElementById('postText').value=''}
