@@ -295,7 +295,7 @@ function renderPlan(){
    const bar=card.querySelector('.progress i'), label=card.querySelector('.progress')?.parentElement?.querySelector('p.muted');
    if(bar)bar.style.width=Math.min(100,(count/total)*100)+'%';
    if(label)label.textContent=count+' of '+total+' days';
- }
+  });
 }function journalStore(){try{return JSON.parse(localStorage.getItem('journalEntries')||'[]')}catch(e){return[]}}
 function renderJournal(){
  const entries=journalStore(),today=new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
