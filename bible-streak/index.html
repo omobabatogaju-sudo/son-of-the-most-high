@@ -372,5 +372,5 @@ function openSearchResult(reference){
  setTimeout(()=>{if(ref.verse)verseAction(ref.verse)},250);
 }
 function openBookSearch(name){const i=books.findIndex(b=>b[0]===name);if(i<0)return;bookEl.value=i;fillChapters();showView('bible')}
-updateStats();renderSaved();renderPlan();renderPlanDetail();renderHistory();renderProfileJourney();loadPlanCatalog();if(sb)syncProfile();document.getElementById('journalText').value=localStorage.getItem('journal')||''; document.title='Bible Streak — Read the Bible, Stay in the Word';
+updateStats();renderSaved();renderPlan();renderPlanDetail();renderHistory();renderProfileJourney();loadPlanCatalog();if(sb)syncProfile();document.getElementById('journalText').value=localStorage.getItem('journal')||''; document.title='Bible Streak — Read the Bible, Stay in the Word'; routeFromHash();
 </script></div></body></html>
