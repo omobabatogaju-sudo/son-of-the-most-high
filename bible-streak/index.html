@@ -169,6 +169,14 @@ function saveNote(){
  if(body)items.unshift({reference:ref,kind:'note',note:body});
  setSavedItems(items);document.getElementById('notePanel').classList.remove('show');renderSaved();toast(body?'Note saved.':'Note removed.');
 }
+function speakChapter(){
+ const verses=[...document.querySelectorAll('#verses .verse')].map(x=>x.innerText.replace(/^\d+\s*/,'').trim()).filter(Boolean);
+ if(!verses.length)return toast('Open a chapter first.');
+ if(!('speechSynthesis' in window))return toast('Audio is not supported in this browser.');
+ speechSynthesis.cancel();
+ const utterance=new SpeechSynthesisUtterance(verses.join(' '));
+ utterance.rate=0.92;utterance.pitch=1;speechSynthesis.speak(utterance);toast('Reading aloud…');
+}
 function bookmark(){const ref=books[bookEl.value][0]+' '+chapterEl.value;localStorage.setItem('savedChapter',ref);renderSaved();toast('Chapter saved.')}
 function saveHistory(){let h=JSON.parse(localStorage.getItem('history')||'[]');const x=books[bookEl.value][0]+' '+chapterEl.value;h=[x,...h.filter(v=>v!==x)].slice(0,12);localStorage.setItem('history',JSON.stringify(h));renderHistory()}
 function shareChapter(){const title=books[bookEl.value][0]+' '+chapterEl.value+' — Bible Streak';if(navigator.share) navigator.share({title,text:'Read '+title,url:location.href}); else {navigator.clipboard?.writeText(location.href);toast('Bible Streak link copied.')}}
