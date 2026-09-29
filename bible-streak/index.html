@@ -11,7 +11,7 @@
 <header class="top"><div class="topin"><button class="logo" style="border:0;background:none;padding:0;cursor:pointer" onclick="showView('home')">Bible<span>Streak</span></button><input class="search" id="search" placeholder="Search Scripture" onkeydown="searchBible(event)"><button class="tool topmore" onclick="showView('profile')">☰</button></div></header>
 <div class="layout">
 <aside class="side">
-<button class="active" data-view="home">⌂ Home</button><button data-view="bible">▤ Bible</button><button data-view="plans">▣ Plans</button><button data-view="journal">✎ Journal</button><div class="small">My Bible</div><button data-view="saved">▢ Saved</button><button data-view="progress">◷ Streak</button><button data-view="profile">◯ You</button>
+<button class="active" data-view="home">⌂ Home</button><button data-view="bible">▤ Bible</button><button data-view="plans">▣ Plans</button><button data-view="journal">✎ Journal</button><button data-view="activity">◎ Community</button><div class="small">My Bible</div><button data-view="saved">▢ Saved</button><button data-view="progress">◷ Streak</button><button data-view="profile">◯ You</button>
 </aside>
 <main class="main">
 <section class="view active" id="home"><div class="homebar"><span id="homeDate">Tuesday, 29 September</span><span id="homeGreeting">Good morning</span></div>
@@ -28,7 +28,7 @@
 <div class="journalPrompt card"><div class="eyebrow">TODAY</div><h2>What is on your heart?</h2><p class="muted">You don't need perfect words. Start where you are.</p><button class="tool" onclick="usePrayerPrompt()">Use a prayer prompt →</button></div>
 <div class="card"><div class="sectionTitle"><h2 id="journalTitle">Today's prayer</h2><span class="muted" id="journalDate"></span></div><textarea id="journalText" class="journal" placeholder="Write your prayer, reflection, gratitude, or what you are learning from Scripture..."></textarea><div class="row" style="margin-top:12px"><button class="btn" onclick="saveJournal()">Save entry</button><button class="tool" onclick="clearJournal()">Clear</button></div></div>
 <div class="card journalHistory"><div class="sectionTitle"><h2>Previous entries</h2><span class="muted">Private on this device</span></div><div id="journalEntries"></div></div></section>
-<section class="view" id="activity"><div class="eyebrow">Community</div><h1>Walk with others.</h1><p class="muted">A place for encouragement, prayer and Scripture — without pressure.</p><div class="card"><h2>Share encouragement</h2><textarea class="journal" id="postText" placeholder="Encourage someone with what God is teaching you..."></textarea><button class="btn" style="margin-top:12px" onclick="post()">Share</button></div><div id="posts" style="margin-top:16px"></div></section>
+<section class="view" id="activity"><div class="eyebrow">COMMUNITY</div><h1>Walk with others.</h1><p class="muted">See the public journey of the Bible Streak community. Private prayers, notes and saved Scripture stay private.</p><div class="card"><h2>Activity</h2><div id="communityFeed"><div class="empty">Loading community...</div></div></div><div class="card"><h2>Share encouragement</h2><textarea class="journal" id="postText" placeholder="Encourage someone with what God is teaching you..."></textarea><button class="btn" style="margin-top:12px" onclick="post()">Share</button></div><div id="posts" style="margin-top:16px"></div></section>
 <section class="view" id="saved"><div class="eyebrow">YOUR BIBLE</div><h1>Saved Scripture.</h1><p class="muted">Keep the verses, chapters, highlights and notes you want close.</p><div class="savedtabs"><button class="tab active" onclick="setSavedTab('all',this)">All</button><button class="tab" onclick="setSavedTab('verse',this)">Verses</button><button class="tab" onclick="setSavedTab('highlight',this)">Highlights</button><button class="tab" onclick="setSavedTab('note',this)">Notes</button></div><div id="savedList" class="empty">Nothing here yet.</div></section>
 <section class="view" id="progress"><div class="eyebrow">PROGRESS</div><h1>Your journey.</h1>
 <div class="progressHero card"><div><div class="eyebrow">CURRENT STREAK</div><div class="streak" id="streak2">0</div><p class="muted" id="streakSummary">days in the Word</p></div><div class="progressRing" id="weekProgress">0/7</div></div>
@@ -94,7 +94,7 @@ function showView(v,updateUrl=true){
    if(location.hash!==hash) history.pushState({view:v},'',hash);
  }
  if(v==='home')refreshHome();
- if(v==='journal')renderJournal();
+ if(v==='journal')renderJournal(); if(v==='activity')renderCommunity();
  if(v==='saved')renderSaved();
  if(v==='plans')renderPlan();
  if(v==='planDetail')renderPlanDetail();
@@ -104,7 +104,7 @@ function showView(v,updateUrl=true){
 }
 function routeFromHash(){
  const v=decodeURIComponent(location.hash.replace(/^#/,''));
- const valid=['home','bible','plans','planDetail','journal','saved','progress','profile'];
+ const valid=['home','bible','plans','planDetail','journal','activity','saved','progress','profile'];
  showView(valid.includes(v)?v:'home',false);
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));
@@ -297,7 +297,7 @@ async function completePlanDay(){
  } else {
    localStorage.setItem('cloudPlanDone',JSON.stringify([...new Set([...completedPlanDays(),d])]));
  }
- if(d<(p.duration_days||14))localStorage.setItem('planDay',String(d+1));
+ if(d<(p.duration_days||14))localStorage.setItem('planDay',String(d+1)); await recordCommunityActivity('plan_day_completed','completed a reading plan day',null,day?.reference||'',{plan:p.title||'',day:d});
  renderPlan();renderPlanDetail();toast('Day '+d+' completed.');
 }
 function sharePlan(){const p=currentPlan();if(navigator.share)navigator.share({title:p,text:'Join me on '+p+' with Bible Streak.'});else{navigator.clipboard?.writeText(location.href);toast('Plan link copied.')}}
@@ -336,7 +336,65 @@ async function saveJournal(){
  renderJournal();updateStats();toast('Entry saved privately.');
 }
 function clearJournal(){document.getElementById('journalTitle').textContent="Today's prayer";document.getElementById('journalText').value=''}
-function post(){const t=document.getElementById('postText').value.trim();if(!t)return;const d=document.createElement('div');d.className='card';d.innerHTML='<b>Encouragement</b><p class="muted">'+t.replace(/</g,'&lt;')+'</p><small>Just now</small>';document.getElementById('posts').prepend(d);document.getElementById('postText').value=''}
+async function post(){
+ const t=document.getElementById('postText').value.trim();
+ if(!t)return toast('Write something first.');
+ if(!sb)return toast('Sign in to share with the community.');
+ const {data:{user}}=await sb.auth.getUser();
+ if(!user)return openAuth();
+ const {error}=await sb.from('community_posts').insert({author_id:user.id,post_type:'encouragement',body:t});
+ if(error)return toast('Could not share that yet.');
+ document.getElementById('postText').value='';
+ await recordCommunityActivity('encouragement','shared an encouragement',t);
+ await renderCommunity();
+ toast('Shared with the community.');
+}
+async function recordCommunityActivity(type,title,body='',reference='',metadata={}){
+ if(!sb)return false;
+ const {data:{user}}=await sb.auth.getUser();
+ if(!user)return false;
+ if(metadata.once){
+   const key='communityOnce_'+metadata.once;
+   if(localStorage.getItem(key)==='1')return true;
+   localStorage.setItem(key,'1');
+ }
+ const {error}=await sb.from('community_activity').insert({actor_id:user.id,activity_type:type,title,body:body||null,reference:reference||null,metadata});
+ return !error;
+}
+function timeAgo(iso){
+ const mins=Math.max(0,Math.floor((Date.now()-new Date(iso).getTime())/60000));
+ if(mins<1)return 'Just now'; if(mins<60)return mins+'m ago';
+ const hrs=Math.floor(mins/60); if(hrs<24)return hrs+'h ago';
+ const days=Math.floor(hrs/24); return days+'d ago';
+}
+async function renderCommunity(){
+ const postsBox=document.getElementById('posts'), feedBox=document.getElementById('communityFeed');
+ if(!sb){if(feedBox)feedBox.innerHTML='<div class="empty">Sign in to join the community.</div>';return}
+ const {data:{user}}=await sb.auth.getUser();
+ if(!user){if(feedBox)feedBox.innerHTML='<div class="empty">Sign in to join the community.</div>';return}
+ const [{data:activities},{data:posts}]=await Promise.all([
+   sb.from('community_activity').select('*').order('created_at',{ascending:false}).limit(30),
+   sb.from('community_posts').select('*').order('created_at',{ascending:false}).limit(20)
+ ]);
+ const ids=[...(activities||[]).map(x=>x.actor_id),...(posts||[]).map(x=>x.author_id)].filter(Boolean);
+ let profiles=[];
+ if(ids.length){const {data}=await sb.from('profiles').select('id,display_name').in('id',[...new Set(ids)]);profiles=data||[]}
+ const names=new Map(profiles.map(x=>[x.id,x.display_name||'Someone']));
+ if(feedBox){
+   feedBox.innerHTML=(activities||[]).map(a=>{
+     const who=escapeHtml(names.get(a.actor_id)||'Someone');
+     const body=a.body?'<p class="muted" style="margin:7px 0 0">'+escapeHtml(a.body)+'</p>':'';
+     const ref=a.reference?'<small>'+escapeHtml(a.reference)+'</small>':'';
+     return '<div class="card" style="margin-bottom:10px"><div><b>'+who+'</b> '+escapeHtml(a.title)+'</div>'+body+ref+'<div class="muted" style="margin-top:8px;font-size:12px">'+timeAgo(a.created_at)+'</div></div>';
+   }).join('')||'<div class="empty">No community activity yet. Be the first to share.</div>';
+ }
+ if(postsBox){
+   postsBox.innerHTML=(posts||[]).map(p=>{
+     const who=escapeHtml(names.get(p.author_id)||'Someone');
+     return '<div class="card" style="margin-bottom:10px"><b>'+who+'</b><p class="muted">'+escapeHtml(p.body)+'</p><small>'+timeAgo(p.created_at)+'</small></div>';
+   }).join('')||'<div class="empty">No encouragements yet.</div>';
+ }
+}
 function updateStats(){renderProfileJourney();const s=localStorage.getItem('streak')||0;document.getElementById('streak').textContent=s;document.getElementById('streak2').textContent=s;document.getElementById('chaptersRead').textContent=localStorage.getItem('chaptersRead')||0;document.getElementById('refCount').textContent=localStorage.getItem('refCount')||0;refreshHome();if(document.getElementById('progress'))renderProgress();const b=document.getElementById('bigStreak');if(b)b.textContent=s;const ps=document.getElementById('profileStreak');if(ps)ps.textContent=s;const pc=document.getElementById('profileChapters');if(pc)pc.textContent=localStorage.getItem('chaptersRead')||0;const pv=document.getElementById('profileSaved');if(pv)pv.textContent=document.querySelectorAll('#savedList .card').length||0}
 const SUPABASE_URL='https://ymocbdnxkdxoqdxqtyis.supabase.co',SUPABASE_KEY='sb_publishable_01qPADoR2DZqRrySzQrA6Q_MVKA5vHy';const sb=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY);function setProfileGuest(){const n=document.getElementById('profileName'),e=document.getElementById('profileEmail'),a=document.getElementById('profileAvatar'),s=document.getElementById('profileStatus'),b=document.getElementById('authButton'),o=document.getElementById('signOutButton'),sync=document.getElementById('profileSync'),st=document.getElementById('profileSyncText');if(n)n.textContent='Bible Streak';if(e)e.textContent='Your personal Scripture space';if(a)a.textContent='BS';if(s)s.textContent='Sign in to keep your Bible Streak activity connected across devices.';if(b){b.style.display='inline-block';b.textContent='Sign in / Create account'}if(o)o.style.display='none';if(sync)sync.classList.remove('connected','syncing');if(st)st.textContent='This device';}
 function setProfileUser(user){const name=user?.user_metadata?.full_name||user?.email?.split('@')[0]||'Bible Streak';const n=document.getElementById('profileName'),e=document.getElementById('profileEmail'),a=document.getElementById('profileAvatar'),s=document.getElementById('profileStatus'),b=document.getElementById('authButton'),o=document.getElementById('signOutButton'),sync=document.getElementById('profileSync'),st=document.getElementById('profileSyncText');if(n)n.textContent=name;if(e)e.textContent=user?.email||'Signed in';if(a)a.textContent=name.split(/\\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();if(s)s.textContent='Your account is connected. Progress and saved Scripture can sync when you are signed in.';if(b)b.style.display='none';if(o)o.style.display='inline-block';if(sync)sync.classList.add('connected');if(st)st.textContent='Account connected';}
@@ -352,7 +410,17 @@ async function signOutAccount(){if(!sb)return;const {error}=await sb.auth.signOu
  }
  const {error}=await sb.from('saved_scripture').insert({user_id:user.id,reference:ref,kind:'verse',note:note||null,highlight:highlight||null});
  return !error;
-}async function loadCloudSaved(){if(!sb)return;const {data:{user}}=await sb.auth.getUser();if(!user)return;const {data}=await sb.from('saved_scripture').select('reference,note,highlight').eq('user_id',user.id).order('created_at',{ascending:false});if(data?.length){localStorage.setItem('cloudSaved',JSON.stringify(data));renderSaved()}}async function syncProfile(){if(!sb)return;const {data:{user}}=await sb.auth.getUser();if(!user){setProfileGuest();return}setProfileUser(user);await sb.from('profiles').upsert({id:user.id,display_name:user.user_metadata?.full_name||user.email?.split('@')[0]},{onConflict:'id'});renderProfileJourney()}
+}async function loadCloudSaved(){if(!sb)return;const {data:{user}}=await sb.auth.getUser();if(!user)return;const {data}=await sb.from('saved_scripture').select('reference,note,highlight').eq('user_id',user.id).order('created_at',{ascending:false});if(data?.length){localStorage.setItem('cloudSaved',JSON.stringify(data));renderSaved()}}async function syncProfile(){
+ if(!sb)return;
+ const {data:{user}}=await sb.auth.getUser();
+ if(!user){setProfileGuest();return}
+ setProfileUser(user);
+ const {data:existing}=await sb.from('profiles').select('id').eq('id',user.id).maybeSingle();
+ const name=user.user_metadata?.full_name||user.email?.split('@')[0]||'Bible Streak';
+ await sb.from('profiles').upsert({id:user.id,display_name:name},{onConflict:'id'});
+ if(!existing)await recordCommunityActivity('joined','joined Bible Streak',null,null,{once:'joined'});
+ renderProfileJourney();
+}
 function renderProfileJourney(){const p=localStorage.getItem('activePlan'),done=completedPlanDays(),name=document.getElementById('profilePlanName'),txt=document.getElementById('profilePlanText');if(!name||!txt)return;if(!p){name.textContent='No active plan';txt.textContent='Choose a reading plan to build a daily rhythm.';return}const info=currentPlanInfo(),total=info.duration_days||PLAN_DURATIONS[p]||14;name.textContent=p;txt.textContent=Math.min(done.length,total)+' of '+total+' days complete';}
 if(sb)sb.auth.onAuthStateChange((event,session)=>setTimeout(async()=>{if(session?.user){setProfileUser(session.user);await syncProfile();await loadCloudSaved();await loadPlanCatalog();await loadCloudPlanProgress()}else if(event==='SIGNED_OUT'){setProfileGuest()}},0));async function saveCloudActivity(){if(!sb)return;const {data:{user}}=await sb.auth.getUser();if(!user)return;const today=new Date().toISOString().slice(0,10);await sb.from('daily_activity').upsert({user_id:user.id,activity_date:today,reading_completed:true},{onConflict:'user_id,activity_date'});}function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2200)}
 function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
