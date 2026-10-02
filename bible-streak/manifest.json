@@ -1,25 +1,18 @@
 {
-  "id": "./",
+  "id": "/son-of-the-most-high/bible-streak/",
   "name": "Bible Streak",
   "short_name": "Bible Streak",
-  "description": "Read Scripture, build a daily Bible habit, follow reading plans, and grow with the community.",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/son-of-the-most-high/bible-streak/",
+  "scope": "/son-of-the-most-high/bible-streak/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#f6f6f2",
   "theme_color": "#0d6b57",
-  "categories": [
-    "books",
-    "education",
-    "lifestyle"
-  ],
   "icons": [
     {
       "src": "./icon.svg",
       "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any"
+      "type": "image/svg+xml"
     },
     {
       "src": "./icon.svg",
