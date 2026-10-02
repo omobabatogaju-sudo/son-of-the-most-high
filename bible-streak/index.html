@@ -30,7 +30,7 @@
 </aside>
 <main class="main">
 <section class="view active" id="home"><div class="homebar"><span id="homeDate">Today</span><span id="homeGreeting">Good morning</span></div>
-<div class="hero homeHero"><div class="heroCopy"><div class="eyebrow">TODAY</div><h1>Stay with the Word.</h1><p id="todayIntro">Make Scripture part of your everyday life.</p></div><div class="todayReading"><div><div class="eyebrow">TODAY'S READING</div><h2 id="todayReadingRef">John 15:5</h2><p class="todayReadingLabel" id="todayReadingLabel">Read slowly. Stay with the passage.</p></div><span class="todayCheck" id="todayCheck">○</span></div><div class="homeActions row"><button class="btn gold" onclick="openTodayReading()">Read today</button><button class="btn light" onclick="listenTodayReading()">▶ Listen</button><button class="tool homeReflect" onclick="reflectToday()">Reflect <span>→</span></button></div></div>
+<div class="hero homeHero"><div class="heroCopy"><div class="eyebrow">TODAY</div><h1>Stay with the Word.</h1><p id="todayIntro">Make Scripture part of your everyday life.</p></div><div class="todayReading"><div><div class="eyebrow">TODAY'S READING</div><h2 id="todayReadingRef">John 15:5</h2><p class="todayReadingLabel" id="todayReadingLabel">Read slowly. Stay with the passage.</p></div><span class="todayCheck" id="todayCheck">○</span></div><div class="homeActions row"><button class="btn gold" onclick="openTodayChapter()">Open today’s chapter</button><button class="btn light" onclick="listenTodayReading()">▶ Listen</button><button class="tool homeReflect" onclick="reflectToday()">Reflect <span>→</span></button></div></div>
 <div class="homegrid"><div class="card dailyverse"><div class="eyebrow">VERSE OF THE DAY</div><h2 id="dailyVerseRef">John 15:5</h2><p class="versequote" id="dailyVerseText">“I am the vine, ye are the branches...”</p><div class="row" style="margin-top:20px"><button class="tool" onclick="openDailyVerse()">Read in context →</button><button class="tool" onclick="listenReference(document.getElementById('dailyVerseRef').textContent)">▶ Listen</button></div></div><div class="card streakcard"><div class="eyebrow">YOUR STREAK</div><div class="streak" id="streak">0</div><p class="muted" id="streakStatus">days in the Word</p><button class="btn" id="todayButton" onclick="completeToday()">Complete today</button></div></div>
 <div class="card home-reading-card"><div><div class="eyebrow">KEEP READING</div><h2 id="homeLastRead">Genesis 1</h2><p class="muted">Pick up where you left off.</p></div><button class="tool" onclick="goToBible(localStorage.getItem('lastRead')||'Genesis 1')">Open chapter →</button></div>
 <div class="sectionTitle"><h2>Continue your journey</h2><button class="tool" onclick="showView('plans')">See all</button></div><div class="planrow"><div class="card"><div class="eyebrow">14 DAYS</div><h2>Start With Jesus</h2><p class="muted">Meet Jesus through the Gospels.</p><button class="btn" onclick="startPlan('Start With Jesus');showView('planDetail')">Start plan</button></div><div class="card"><div class="eyebrow">PRAYER</div><h2>Talk to God</h2><p class="muted">Write what is on your heart today.</p><button class="tool" onclick="showView('journal')">Open prayer →</button></div></div>
@@ -253,6 +253,7 @@ function openReference(ref){
 function continueReading(){openReference(lastReadRef())}
 function openDailyVerse(){openReference(document.getElementById('dailyVerseRef').textContent)}
 function openTodayReading(){const ref=document.getElementById('todayReadingRef')?.textContent||'John 15:5';openReference(ref)}
+function openTodayChapter(){const ref=document.getElementById('todayReadingRef')?.textContent||'John 15:5';const parsed=searchVerseRef(ref);if(!parsed){toast('Today’s chapter is not available yet.');return;}bookEl.value=parsed.index;fillChapters();chapterEl.value=parsed.chapter;showView('bible');setTimeout(()=>loadChapter(),40);}
 function dailyVerseForToday(){
  const startDate=new Date(2026,0,1),today=new Date();
  startDate.setHours(0,0,0,0);today.setHours(0,0,0,0);
@@ -281,7 +282,7 @@ async function loadDailyVerse(){
  }
 }
 function refreshHome(){
- const ref=lastReadRef();document.getElementById('homeLastRead').textContent=ref; loadDailyVerse(); const dv=dailyVerseForToday(); const dvRef=document.getElementById('dailyVerseRef'),dvText=document.getElementById('dailyVerseText'); if(dvRef)dvRef.textContent=dv[0]; if(dvText)dvText.textContent='“'+dv[1]+'”';
+ const ref=lastReadRef();document.getElementById('homeLastRead').textContent=ref; loadDailyVerse();
  const d=new Date();const dateEl=document.getElementById('homeDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});document.getElementById('homeGreeting').textContent=d.getHours()<12?'Good morning':d.getHours()<18?'Good afternoon':'Good evening';
  const done=localStorage.getItem('streakDone_'+localDateKey())==='1';
  const b=document.getElementById('todayButton');if(b){b.textContent=done?'Today completed':'Complete today';b.disabled=done;}
