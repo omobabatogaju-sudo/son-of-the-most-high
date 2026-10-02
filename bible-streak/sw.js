@@ -1,4 +1,4 @@
-const CACHE_NAME='bible-streak-shell-v3';
+const CACHE_NAME='bible-streak-shell-v4';
 const BASE='/son-of-the-most-high/bible-streak/';
 const APP_SHELL=[BASE,BASE+'index.html',BASE+'manifest.json',BASE+'icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(APP_SHELL)).then(()=>self.skipWaiting())));
