@@ -253,29 +253,35 @@ function openReference(ref){
 function continueReading(){openReference(lastReadRef())}
 function openDailyVerse(){openReference(document.getElementById('dailyVerseRef').textContent)}
 function openTodayReading(){const ref=document.getElementById('todayReadingRef')?.textContent||'John 15:5';openReference(ref)}
-const DAILY_VERSES=[
- ['John 3:16','For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.'],
- ['Psalm 23:1','The LORD is my shepherd; I shall not want.'],
- ['Proverbs 3:5','Trust in the LORD with all thine heart; and lean not unto thine own understanding.'],
- ['Isaiah 41:10','Fear thou not; for I am with thee: be not dismayed; for I am thy God.'],
- ['Philippians 4:13','I can do all things through Christ which strengtheneth me.'],
- ['Romans 8:28','And we know that all things work together for good to them that love God.'],
- ['Jeremiah 29:11','For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil.'],
- ['Psalm 46:1','God is our refuge and strength, a very present help in trouble.'],
- ['Matthew 11:28','Come unto me, all ye that labour and are heavy laden, and I will give you rest.'],
- ['Joshua 1:9','Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.'],
- ['Psalm 119:105','Thy word is a lamp unto my feet, and a light unto my path.'],
- ['2 Corinthians 5:17','Therefore if any man be in Christ, he is a new creature: old things are passed away.'],
- ['Romans 12:2','And be not conformed to this world: but be ye transformed by the renewing of your mind.'],
- ['Psalm 34:8','O taste and see that the LORD is good: blessed is the man that trusteth in him.'],
- ['Galatians 2:20','I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me.']
-];
 function dailyVerseForToday(){
- const start=new Date(2026,0,1); const today=new Date(); start.setHours(0,0,0,0); today.setHours(0,0,0,0);
- const diff=Math.floor((today-start)/86400000); return DAILY_VERSES[((diff%DAILY_VERSES.length)+DAILY_VERSES.length)%DAILY_VERSES.length];
+ const startDate=new Date(2026,0,1),today=new Date();
+ startDate.setHours(0,0,0,0);today.setHours(0,0,0,0);
+ const dayIndex=Math.max(0,Math.floor((today-startDate)/86400000));
+ let n=dayIndex;
+ for(let i=0;i<books.length;i++){
+   const chapters=books[i][1];
+   if(n<chapters)return {index:i,chapter:n+1,verse:1};
+   n-=chapters;
+ }
+ n=dayIndex%books.reduce((sum,b)=>sum+b[1],0);
+ for(let i=0;i<books.length;i++){if(n<books[i][1])return {index:i,chapter:n+1,verse:1};n-=books[i][1];}
+ return {index:0,chapter:1,verse:1};
+}
+async function loadDailyVerse(){
+ const ref=dailyVerseForToday(),name=books[ref.index][0],reference=name+' '+ref.chapter+':'+ref.verse;
+ const refEl=document.getElementById('dailyVerseRef'),textEl=document.getElementById('dailyVerseText');
+ if(refEl)refEl.textContent=reference;
+ if(textEl)textEl.textContent='Loading today’s verse…';
+ try{
+   const data=await fetch('https://api.getbible.net/v2/kjv/'+(ref.index+1)+'/'+ref.chapter+'.json').then(x=>x.json());
+   const verse=data?.verses?.find(v=>Number(v.verse)===ref.verse);
+   if(textEl)textEl.textContent=verse?.text?'“'+verse.text+'”':'Today’s Scripture is '+reference+'.';
+ }catch(e){
+   if(textEl)textEl.textContent='Today’s Scripture: '+reference;
+ }
 }
 function refreshHome(){
- const ref=lastReadRef();document.getElementById('homeLastRead').textContent=ref; const dv=dailyVerseForToday(); const dvRef=document.getElementById('dailyVerseRef'),dvText=document.getElementById('dailyVerseText'); if(dvRef)dvRef.textContent=dv[0]; if(dvText)dvText.textContent='“'+dv[1]+'”';
+ const ref=lastReadRef();document.getElementById('homeLastRead').textContent=ref; loadDailyVerse(); const dv=dailyVerseForToday(); const dvRef=document.getElementById('dailyVerseRef'),dvText=document.getElementById('dailyVerseText'); if(dvRef)dvRef.textContent=dv[0]; if(dvText)dvText.textContent='“'+dv[1]+'”';
  const d=new Date();const dateEl=document.getElementById('homeDate');if(dateEl)dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});document.getElementById('homeGreeting').textContent=d.getHours()<12?'Good morning':d.getHours()<18?'Good afternoon':'Good evening';
  const done=localStorage.getItem('streakDone_'+localDateKey())==='1';
  const b=document.getElementById('todayButton');if(b){b.textContent=done?'Today completed':'Complete today';b.disabled=done;}
